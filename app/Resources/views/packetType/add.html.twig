@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">New Packet Type</h1>
+    </div>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit" class="btn btn-success">Save</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

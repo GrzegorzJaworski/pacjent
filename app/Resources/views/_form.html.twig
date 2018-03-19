@@ -1,0 +1,59 @@
+{{ form_start(form) }}
+    {{ form_row(form.patientId) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.surname) }}
+    {{ form_row(form.pesel) }}
+    {{ form_row(form.birthDay) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.zipCode) }}
+    {{ form_row(form.address) }}
+<h3>Packets</h3>
+
+<table class="table js-packet-wrapper" data-prototype="{% filter escape %}
+             {{ include('prototype.html.twig', { 'form': form.packets.vars.prototype }) }}
+         {% endfilter %}"
+       data-index="{{ form.packets|length }}">
+    <thead>
+    <tr>
+        <td>Packet</td>
+        <td>Start</td>
+        <td>End</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for packetForm in form.packets %}
+
+    {{ form_errors(packetForm) }}
+    <tr class="js-patient-packet-item">
+        <td>
+            {{ form_row(packetForm.packetType) }}
+        </td>
+        <td>
+            {{ form_row(packetForm.start) }}
+        </td>
+        <td>
+            {{ form_row(packetForm.end) }}
+        </td>
+        <td>
+            <button class="btn btn-link js-remove-packet pull-right">
+                <span class="fas fa-window-close"></span>
+            </button>
+        </td>
+        {% endfor %}
+
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td>
+            <button class="btn btn-outline-primary js-packet-add">
+                <span class="fa fa-plus-circle"></span>
+                Add Packet
+            </button>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<button type="submit" class="btn btn-success">Save</button>
+{{ form_end(form) }}
